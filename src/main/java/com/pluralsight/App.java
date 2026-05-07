@@ -42,10 +42,14 @@ public class App {
             }
         }
 
-        System.out.printf(
-                "%s is the winner with %d points!%n",
-                highestPlayer.getName(),
-                highestPlayer.getHand().getValue()
-        );
+        if (highestPlayer == null) {
+            System.out.println("Nobody wins! Sorry.");
+        } else {
+            System.out.printf(
+                    "%s is the winner with %d points!%n",
+                    highestPlayer.getName(),
+                    highestPlayer.getHand().getValue()
+            );
+        }
     }
 }
