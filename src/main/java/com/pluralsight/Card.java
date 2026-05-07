@@ -1,8 +1,8 @@
 package com.pluralsight;
 
 public class Card {
-    private String suit;
-    private String value;
+    private final String suit;
+    private final String value;
     private boolean isFaceUp;
 
     public Card(String suit, String value) {
