@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class App {
     static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
         System.out.print("Enter the number of players: ");
         int playerCount = Integer.parseUnsignedInt(scan.nextLine());
@@ -17,6 +18,7 @@ public class App {
         }
 
         Deck deck = new Deck();
+        deck.shuffle();
 
         // Deal.
         for (Player player : players) {
@@ -25,11 +27,25 @@ public class App {
             hand.deal(deck.deal());
         }
 
-        // TODO:
-        // 1. Display hand
-        // 2. Keep track of who has the highest score below or equal to 21
+        Player highestPlayer = null;
         for (Player player : players) {
+            System.out.printf("%s has these cards: %s%n", player.getName(), player.getHand());
+            if (highestPlayer == null) {
+                highestPlayer = player;
+                continue;
+            }
 
+            // TODO: deal with ties
+            if (player.getHand().getValue() > highestPlayer.getHand().getValue()
+                    && player.getHand().getValue() <= 21) {
+                highestPlayer = player;
+            }
         }
+
+        System.out.printf(
+                "%s is the winner with %d points!%n",
+                highestPlayer.getName(),
+                highestPlayer.getHand().getValue()
+        );
     }
 }

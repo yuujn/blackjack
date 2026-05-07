@@ -30,4 +30,27 @@ public class Hand {
         }
         return value;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder handString = new StringBuilder();
+        boolean isFirst = true;
+        for (Card card : cards) {
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                handString.append(" ");
+            }
+            boolean shouldFlipBack = false;
+            if (!card.isFaceUp()) {
+                card.flip();
+                shouldFlipBack = true;
+            }
+            handString.append(card.getValue());
+            if (shouldFlipBack) {
+                card.flip();
+            }
+        }
+        return handString.toString();
+    }
 }
