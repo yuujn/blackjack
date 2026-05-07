@@ -31,7 +31,9 @@ public class App {
         for (Player player : players) {
             System.out.printf("%s has these cards: %s%n", player.getName(), player.getHand());
             if (highestPlayer == null) {
-                highestPlayer = player;
+                if (player.getHand().getValue() <= 21) {
+                    highestPlayer = player;
+                }
                 continue;
             }
 
