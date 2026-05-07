@@ -28,6 +28,27 @@ public class Hand {
             value += card.getPointValue();
             card.flip(); // hide the card again
         }
+        // Steps:
+        // 1. Count the number of aces in the hand.
+        // 2. Check how many aces we need to turn into 1s to avoid busting.
+        int aceCount = 0;
+        for (Card card : cards) {
+            card.flip();
+            if (card.getValue().equals("A")) {
+                aceCount += 1;
+            }
+            card.flip();
+        }
+        int minValue = value - (aceCount * 10);
+        int allowedElevens = 0;
+        for (int i = 1; i <= aceCount; i++) {
+            if (minValue + (i * 10) <= 21) {
+                allowedElevens = i;
+            } else {
+                break;
+            }
+        }
+        value = minValue + (allowedElevens * 10);
         return value;
     }
 
